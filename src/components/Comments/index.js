@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import {v4 as uuidv4} from 'uuid'
 import CommentItem from '../CommentItem'
 import {
   CommentsContainer,
@@ -7,18 +8,26 @@ import {
   NameInput,
   CommentTextInput,
   CommentButton,
+  CommentsList,
 } from './styledComponents'
 
 const Comments = () => {
   const [name, setName] = useState('')
   const [commentText, setCommentText] = useState('')
-  const [comment, setComment] = useState({name: '', commentText: ''})
+
+  const [commentList, setCommentList] = useState([])
 
   const OnChangeName = event => setName(event.target.value)
   const onChangeCommentText = event => setCommentText(event.target.value)
   const onAddComment = event => {
     event.preventDefault()
-    setComment({name, commentText})
+    const newComment = {
+      id: uuidv4(),
+      name,
+      commentText,
+    }
+    setCommentList(prev => [...prev, newComment])
+
     setName('')
     setCommentText('')
   }
@@ -41,7 +50,11 @@ const Comments = () => {
         />
         <CommentButton type="submit">Comment</CommentButton>
       </Form>
-      <CommentItem commentDetails={comment} />
+      <CommentsList>
+        {commentList.map(eachComment => (
+          <CommentItem key={eachComment.id} commentDetails={eachComment} />
+        ))}
+      </CommentsList>
     </CommentsContainer>
   )
 }

@@ -32,6 +32,13 @@ const Comments = () => {
     setCommentText('')
   }
 
+  const deleteComment = id => {
+    const newCommentList = commentList.filter(
+      eachComment => eachComment.id !== id,
+    )
+    setCommentList(newCommentList)
+  }
+
   return (
     <CommentsContainer>
       <CommentsTitle>Comments</CommentsTitle>
@@ -52,7 +59,11 @@ const Comments = () => {
       </Form>
       <CommentsList>
         {commentList.map(eachComment => (
-          <CommentItem key={eachComment.id} commentDetails={eachComment} />
+          <CommentItem
+            key={eachComment.id}
+            commentDetails={eachComment}
+            deleteComment={deleteComment}
+          />
         ))}
       </CommentsList>
     </CommentsContainer>

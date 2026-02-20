@@ -42,3 +42,18 @@ export const CommentText = styled.p`
 export const HorizontalLine = styled.hr`
   border: 1px solid #cbd5e140;
 `
+export const DeleteBtn = styled.button`
+  flex-shrink: 0;
+  text-align: center;
+  color: #ffffff;
+  background-color: #824aaf;
+  font-family: 'Roboto';
+  font-size: 16px;
+  width: 32px;
+  height: 32px;
+  border-radius: 16px;
+  margin: 0px;
+  padding: 7px;
+  margin-left: auto;
+  cursor: pointer;
+`

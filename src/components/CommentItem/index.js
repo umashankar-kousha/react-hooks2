@@ -5,11 +5,15 @@ import {
   NameText,
   CommentText,
   HorizontalLine,
+  DeleteBtn,
 } from './styledComponents'
 
 const CommentItem = props => {
-  const {commentDetails} = props
-  const {name, commentText} = commentDetails
+  const {commentDetails, deleteComment} = props
+  const {id, name, commentText} = commentDetails
+  const onDeleteOnComment = () => {
+    deleteComment(id)
+  }
 
   return (
     <>
@@ -19,6 +23,7 @@ const CommentItem = props => {
           <NameText>{name}</NameText>
           <CommentText>{commentText}</CommentText>
         </NameAndCommentContainer>
+        <DeleteBtn onClick={onDeleteOnComment}>Delete</DeleteBtn>
       </ListItem>
       <HorizontalLine />
     </>
